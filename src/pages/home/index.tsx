@@ -1,4 +1,5 @@
-import { Play } from "phosphor-react";
+import { useState } from "react"
+import { Play } from "phosphor-react"
 import {
     CountdownButton,
     CountdownContainer,
@@ -7,17 +8,29 @@ import {
     HomeContainer,
     TaskInput,
     TimeMarkup
+<<<<<<< HEAD
 } from "./styles";
 import { useForm } from 'react-hook-form'
+=======
+} from "./styles"
+import axios, { AxiosError, AxiosResponse } from 'axios'
+>>>>>>> 398decec67d3db3ebc72d61f3f2986a07618c1bb
 
 export default function Home() {
+    const [task, setTask] = useState('')
 
     return (
         <HomeContainer>
             <form action="">
                 <FormContainer>
                     <label htmlFor="task">Vou trabalhar em</label>
-                    <TaskInput id="task" list="taskDataList" type="text" placeholder="Dê um nome para sua tarefa" />
+                    <TaskInput
+                        id="task"
+                        list="taskDataList"
+                        type="text"
+                        placeholder="Dê um nome para sua tarefa"
+                        onChange={e => setTask(e.target.value)}
+                    />
                     <datalist id="taskDataList">
                         <option value="projeto 1" />
                         <option value="projeto 2" />
@@ -38,7 +51,7 @@ export default function Home() {
                     <span>0</span>
                 </CountdownContainer>
 
-                <CountdownButton disabled type="submit">
+                <CountdownButton disabled={!task} type="submit">
                     <Play size={24} />
                     Começar
                 </CountdownButton>
